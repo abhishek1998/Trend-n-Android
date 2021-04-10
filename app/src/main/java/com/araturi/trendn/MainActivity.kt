@@ -19,7 +19,7 @@ import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
     var gson = Gson()
-    var filteredText = "afropunk"
+    var defaultFilteredText = "afropunk"
 
     // Fetch all post from trend-n api endpoints which stores its document in mongodb atlas
     fun fetchAllPost() {
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 arg3: Long
             ) {
                 val items = spinner.selectedItem.toString()
-                filteredText = items
+                defaultFilteredText = items
             }
 
             override fun onNothingSelected(arg0: AdapterView<*>?) {}
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
     fun fetchPostWithFilter(view : View) {
         val queue = Volley.newRequestQueue(this)
-        val url = "https://trend-n.herokuapp.com/api/filter/" + filteredText
+        val url = "https://trend-n.herokuapp.com/api/filter/" + defaultFilteredText
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
